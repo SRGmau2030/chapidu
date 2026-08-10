@@ -11,7 +11,7 @@ export function renderOrder(container) {
 
   container.innerHTML = `
     <section class="section">
-      <div class="container" style="max-width:700px;">
+      <div class="container" style="max-width:700px; padding-left:16px; padding-right:16px;">
         <div class="section-title">
           <h2>Hacer un Encargo</h2>
           <p>Llena el formulario y nosotros preparamos tu pedido</p>
