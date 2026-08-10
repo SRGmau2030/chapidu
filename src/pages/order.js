@@ -52,7 +52,7 @@ export function renderOrder(container) {
                 <input type="number" id="order-monto" min="10" step="10" placeholder="Ej: 200" />
               </div>
               <div class="form-group">
-                <label>Total estimado</label>
+                <label id="total-label">Precio estimado</label>
                 <div style="font-size:1.8rem; font-weight:800; color:var(--primary); padding:8px 0;" id="order-total">$0.00</div>
               </div>
             </div>
@@ -60,8 +60,8 @@ export function renderOrder(container) {
             <div class="form-group">
               <label>Entrega</label>
               <select id="order-delivery" required>
-                <option value="tienda">🏪 Recoger en tienda (Sin costo extra)</option>
-                <option value="domicilio">🚚 Envío a domicilio (Costo extra)</option>
+                <option value="tienda" disabled>🏪 Recoger en tienda (Próximamente)</option>
+                <option value="domicilio" selected>🚚 Envío a domicilio (Costo extra)</option>
               </select>
             </div>
             <div class="form-group" id="address-group" style="display:none;">
@@ -96,15 +96,22 @@ export function renderOrder(container) {
 
   function updateTotal() {
     const p = getSelectedProduct();
-    if (!p) { totalDisplay.textContent = '$0.00'; return; }
-    let total = 0;
-    if (purchaseType === 'kilo') {
-      const kg = parseFloat(kilosInput.value) || 0;
-      total = kg * p.pricePerKg;
-    } else {
-      total = parseFloat(montoInput.value) || 0;
+    const totalLabel = container.querySelector('#total-label');
+    if (!p) {
+      totalDisplay.textContent = purchaseType === 'kilo' ? '$0.00' : '0.0 kg';
+      return;
     }
-    totalDisplay.textContent = `$${total.toLocaleString('es-MX', { minimumFractionDigits: 2 })}`;
+    if (purchaseType === 'kilo') {
+      totalLabel.textContent = 'Precio estimado';
+      const kg = parseFloat(kilosInput.value) || 0;
+      const total = kg * p.pricePerKg;
+      totalDisplay.textContent = `$${total.toLocaleString('es-MX', { minimumFractionDigits: 2 })}`;
+    } else {
+      totalLabel.textContent = 'Kilos que recibirás';
+      const monto = parseFloat(montoInput.value) || 0;
+      const kgEquivalent = monto > 0 ? (monto / p.pricePerKg).toFixed(2) : '0.00';
+      totalDisplay.textContent = `${kgEquivalent} kg`;
+    }
   }
 
   // Purchase type toggle
@@ -115,6 +122,10 @@ export function renderOrder(container) {
       purchaseType = btn.dataset.type;
       container.querySelector('#kilo-group').style.display = purchaseType === 'kilo' ? '' : 'none';
       container.querySelector('#precio-group').style.display = purchaseType === 'precio' ? '' : 'none';
+      // Reset display on type change
+      const totalLabel = container.querySelector('#total-label');
+      totalLabel.textContent = purchaseType === 'kilo' ? 'Precio estimado' : 'Kilos que recibirás';
+      totalDisplay.textContent = purchaseType === 'kilo' ? '$0.00' : '0.00 kg';
       updateTotal();
     });
   });

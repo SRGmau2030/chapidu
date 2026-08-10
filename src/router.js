@@ -28,7 +28,9 @@ function handleRoute() {
   const content = document.getElementById('page-content');
   if (!content) return;
 
-  const handler = routes[path] || routes['/'];
+  // Strip query string to find the matching route handler
+  const basePath = path.split('?')[0];
+  const handler = routes[basePath] || routes['/'];
   if (handler) {
     content.innerHTML = '';
     handler(content);

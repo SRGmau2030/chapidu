@@ -107,7 +107,8 @@ export function renderHome(container) {
           <h2>¿Por qué elegirnos?</h2>
         </div>
         <div class="features-grid">
-          <div class="feature-card fade-in-delay-1">
+          <div class="feature-card fade-in-delay-1" style="position:relative; opacity:0.7;">
+            <span style="position:absolute; top:12px; right:12px; background:#f1b94c; color:#0a1680; font-size:0.65rem; font-weight:800; padding:3px 8px; border-radius:20px; letter-spacing:0.05em; text-transform:uppercase;">Próximamente</span>
             <div class="icon">🏪</div>
             <h3>Recoge en tienda</h3>
             <p>Tu pedido listo para recoger cuando quieras</p>
