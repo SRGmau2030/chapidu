@@ -22,6 +22,7 @@ export function renderProducts(container) {
             <button class="filter-tab ${initialCat === 'todos' ? 'active' : ''}" data-cat="todos">Todos</button>
             <button class="filter-tab ${initialCat === 'perros' ? 'active' : ''}" data-cat="perros">🐕 Perros</button>
             <button class="filter-tab ${initialCat === 'gatos' ? 'active' : ''}" data-cat="gatos">🐱 Gatos</button>
+            <button class="filter-tab ${initialCat === 'conejos' ? 'active' : ''}" data-cat="conejos">🐇 Conejos</button>
           </div>
         </div>
         <div class="products-grid" id="products-list"></div>
@@ -54,12 +55,11 @@ export function renderProducts(container) {
           <div class="card-img">${p.emoji || '🐾'}</div>
           <div class="card-body">
             <h3>${p.name}</h3>
-            <p class="brand">${p.brand} · ${p.category === 'perros' ? '🐕 Perros' : '🐱 Gatos'}</p>
+            <p class="brand">${p.brand} · ${{ perros: '🐕 Perros', gatos: '🐱 Gatos', conejos: '🐇 Conejos' }[p.category] || p.category}</p>
             <div class="price-row">
               <span class="price">$${p.pricePerKg}/kg</span>
               <span class="price-unit">Bolsa ${p.bagWeight}kg: $${p.priceBag?.toLocaleString()}</span>
             </div>
-            <p class="stock-info">📦 Stock: ${p.stock} kg disponibles</p>
             <div class="card-actions">
               <button class="btn btn-primary btn-sm order-btn" data-id="${p.id}" ${p.stock <= 0 ? 'disabled style="opacity:0.5"' : ''}>
                 ${p.stock <= 0 ? 'Agotado' : 'Encargar 🛒'}

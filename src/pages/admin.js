@@ -68,7 +68,7 @@ export function renderAdmin(container) {
       const status = getStockStatus(p.stock);
       return `<tr>
         <td><strong>${p.emoji} ${p.name}</strong><br><small style="color:var(--text-light)">${p.brand}</small></td>
-        <td>${p.category === 'perros' ? '🐕 Perros' : '🐱 Gatos'}</td>
+        <td>${{ perros: '🐕 Perros', gatos: '🐱 Gatos', conejos: '🐇 Conejos' }[p.category] || p.category}</td>
         <td>$${p.pricePerKg}</td>
         <td>${p.stock} kg</td>
         <td><span class="stock-badge ${status.class}">${status.label}</span></td>
@@ -161,7 +161,7 @@ export function renderAdmin(container) {
           <div class="form-group"><label>Nombre</label><input id="pf-name" value="${existing?.name || ''}" style="padding:10px;border:2px solid var(--border);border-radius:8px;" /></div>
           <div class="form-group"><label>Marca</label><input id="pf-brand" value="${existing?.brand || ''}" style="padding:10px;border:2px solid var(--border);border-radius:8px;" /></div>
           <div class="form-row">
-            <div class="form-group"><label>Categoría</label><select id="pf-cat" style="padding:10px;border:2px solid var(--border);border-radius:8px;"><option value="perros" ${existing?.category === 'perros' ? 'selected' : ''}>🐕 Perros</option><option value="gatos" ${existing?.category === 'gatos' ? 'selected' : ''}>🐱 Gatos</option></select></div>
+            <div class="form-group"><label>Categoría</label><select id="pf-cat" style="padding:10px;border:2px solid var(--border);border-radius:8px;"><option value="perros" ${existing?.category === 'perros' ? 'selected' : ''}>🐕 Perros</option><option value="gatos" ${existing?.category === 'gatos' ? 'selected' : ''}>🐱 Gatos</option><option value="conejos" ${existing?.category === 'conejos' ? 'selected' : ''}>🐇 Conejos</option></select></div>
             <div class="form-group"><label>Emoji</label><input id="pf-emoji" value="${existing?.emoji || '🐾'}" maxlength="4" style="padding:10px;border:2px solid var(--border);border-radius:8px;" /></div>
           </div>
           <div class="form-row">

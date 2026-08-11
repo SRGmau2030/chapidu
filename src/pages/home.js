@@ -14,7 +14,7 @@ export function renderHome(container) {
         <div class="hero-text">
           <span class="badge">🐾 Tienda de Mascotas</span>
           <h1>Las mejores croquetas para tu mascota</h1>
-          <p>Encarga las croquetas favoritas de tu perro o gato. Recoge en tienda o pide a domicilio.</p>
+          <p>Encarga las croquetas favoritas de tu perro o gato. Pide a domicilio.</p>
           <button class="btn btn-primary" id="hero-cta">Ver Catálogo 🛒</button>
         </div>
         <div class="hero-img">
@@ -45,6 +45,13 @@ export function renderHome(container) {
               <p>${products.filter(p => p.category === 'gatos').length} productos</p>
             </div>
           </div>
+          <div class="category-card fade-in-delay-3" data-cat="conejos">
+            <img src="/category-rabbit.png" alt="Croquetas para conejos" />
+            <div class="overlay">
+              <h3>🐇 Para Conejos</h3>
+              <p>${products.filter(p => p.category === 'conejos').length} productos</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -58,8 +65,8 @@ export function renderHome(container) {
         </div>
         <div class="products-grid">
           ${featured.map(p => {
-            const status = getStockStatus(p.stock);
-            return `
+    const status = getStockStatus(p.stock);
+    return `
             <div class="product-card fade-in" data-id="${p.id}">
               <span class="stock-badge ${status.class}">${status.label}</span>
               <div class="card-img">${p.emoji || '🐾'}</div>
@@ -70,13 +77,12 @@ export function renderHome(container) {
                   <span class="price">$${p.pricePerKg}/kg</span>
                   <span class="price-unit">Bolsa ${p.bagWeight}kg: $${p.priceBag}</span>
                 </div>
-                <p class="stock-info">Stock: ${p.stock} kg</p>
                 <div class="card-actions">
                   <button class="btn btn-primary btn-sm order-btn" data-id="${p.id}">Encargar</button>
                 </div>
               </div>
             </div>`;
-          }).join('')}
+  }).join('')}
         </div>
         <div style="text-align:center; margin-top:30px;">
           <button class="btn btn-outline" id="see-all-btn">Ver todos los productos →</button>
@@ -132,7 +138,7 @@ export function renderHome(container) {
   container.querySelector('#hero-cta')?.addEventListener('click', () => navigate('/productos'));
   container.querySelector('#see-all-btn')?.addEventListener('click', () => navigate('/productos'));
   container.querySelector('#promo-cta')?.addEventListener('click', () => navigate('/productos'));
-  
+
   container.querySelectorAll('.category-card').forEach(card => {
     card.addEventListener('click', () => navigate(`/productos?cat=${card.dataset.cat}`));
   });

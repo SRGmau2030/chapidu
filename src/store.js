@@ -18,12 +18,14 @@ const DEFAULT_PRODUCTS = [
   { id: 10, name: 'Cat Chow Adulto Pescado', brand: 'Cat Chow', category: 'gatos', pricePerKg: 100, priceBag: 1500, bagWeight: 15, stock: 22, unit: 'kg', emoji: '🐈‍⬛', description: 'Croquetas para gatos adultos sabor pescado' },
   { id: 11, name: 'Proplan Gato Indoor', brand: 'ProPlan', category: 'gatos', pricePerKg: 210, priceBag: 3150, bagWeight: 15, stock: 12, unit: 'kg', emoji: '🐱', description: 'Alimento para gatos de interior' },
   { id: 12, name: 'Nupec Gato Adulto', brand: 'Nupec', category: 'gatos', pricePerKg: 155, priceBag: 1550, bagWeight: 10, stock: 16, unit: 'kg', emoji: '😸', description: 'Croquetas super premium para gatos' },
+  { id: 13, name: 'Cunipic Premium Conejo', brand: 'Cunipic', category: 'conejos', pricePerKg: 130, priceBag: 1300, bagWeight: 10, stock: 15, unit: 'kg', emoji: '🐇', description: 'Alimento premium para conejos adultos' },
+  { id: 14, name: 'Versele-Laga Cuni Nature', brand: 'Versele-Laga', category: 'conejos', pricePerKg: 150, priceBag: 1500, bagWeight: 10, stock: 10, unit: 'kg', emoji: '🐰', description: 'Pellets naturales para conejos enanos y adultos' },
 ];
 
 function getStore() {
   const raw = localStorage.getItem(STORAGE_KEY);
   if (!raw) {
-    const initial = { products: DEFAULT_PRODUCTS, sales: [], nextId: 13 };
+    const initial = { products: DEFAULT_PRODUCTS, sales: [], nextId: 15 };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(initial));
     return initial;
   }
