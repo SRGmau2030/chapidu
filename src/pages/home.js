@@ -17,8 +17,8 @@ export function renderHome(container) {
           <p>Encarga las croquetas favoritas de tu perro o gato. Pide a domicilio.</p>
           <button class="btn btn-primary" id="hero-cta">Ver Catálogo 🛒</button>
         </div>
-        <div class="hero-img">
-          <img src="/hero-banner.png" alt="Mascotas felices con croquetas Chapidu" />
+        <div class="home/hero-img">
+          <img src="/home/hero-banner.png" alt="Mascotas felices con croquetas Chapidu" />
         </div>
       </div>
     </section>
@@ -32,21 +32,21 @@ export function renderHome(container) {
         </div>
         <div class="categories-grid">
           <div class="category-card fade-in-delay-1" data-cat="perros">
-            <img src="/category-dogs.png" alt="Croquetas para perros" />
+            <img src="/home/category-dogs.png" alt="Croquetas para perros" />
             <div class="overlay">
               <h3>🐕 Para Perros</h3>
               <p>${products.filter(p => p.category === 'perros').length} productos</p>
             </div>
           </div>
           <div class="category-card fade-in-delay-2" data-cat="gatos">
-            <img src="/category-cats.png" alt="Croquetas para gatos" />
+            <img src="/home/category-cats.png" alt="Croquetas para gatos" />
             <div class="overlay">
               <h3>🐱 Para Gatos</h3>
               <p>${products.filter(p => p.category === 'gatos').length} productos</p>
             </div>
           </div>
           <div class="category-card fade-in-delay-3" data-cat="conejos">
-            <img src="/category-rabbit.png" alt="Croquetas para conejos" />
+            <img src="/home/category-rabbit.png" alt="Croquetas para conejos" />
             <div class="overlay">
               <h3>🐇 Para Conejos</h3>
               <p>${products.filter(p => p.category === 'conejos').length} productos</p>
@@ -94,7 +94,7 @@ export function renderHome(container) {
     <section class="section">
       <div class="container">
         <div class="promo-banner fade-in">
-          <img src="/promo-banner.png" alt="Promoción Chapidu" />
+          <img src="/home/promo-banner.png" alt="Promoción Chapidu" />
           <div class="promo-overlay">
             <div>
               <h2>¡Encarga y recoge o pide a domicilio!</h2>

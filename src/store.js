@@ -29,7 +29,18 @@ function getStore() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(initial));
     return initial;
   }
-  return JSON.parse(raw);
+  const data = JSON.parse(raw);
+  // Migration: add any DEFAULT_PRODUCTS that don't exist in stored data
+  let changed = false;
+  DEFAULT_PRODUCTS.forEach(def => {
+    if (!data.products.find(p => p.id === def.id)) {
+      data.products.push(def);
+      if (def.id >= data.nextId) data.nextId = def.id + 1;
+      changed = true;
+    }
+  });
+  if (changed) localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  return data;
 }
 
 function saveStore(data) {
