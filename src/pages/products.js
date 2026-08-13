@@ -52,7 +52,12 @@ export function renderProducts(container) {
       return `
         <div class="product-card fade-in">
           <span class="stock-badge ${status.class}">${status.label}</span>
-          <div class="card-img">${p.emoji || '🐾'}</div>
+          <div class="card-img">
+              ${p.image
+                ? `<img src="${p.image}" alt="${p.name}" loading="lazy" />`
+                : (p.emoji || '🐾')
+              }
+            </div>
           <div class="card-body">
             <h3>${p.name}</h3>
             <p class="brand">${p.brand} · ${{ perros: '🐕 Perros', gatos: '🐱 Gatos', conejos: '🐇 Conejos' }[p.category] || p.category}</p>

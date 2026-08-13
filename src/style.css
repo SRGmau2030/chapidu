@@ -254,6 +254,11 @@ input, select, textarea { font-family: var(--font); outline: none; }
   display: flex; align-items: center; justify-content: center;
   font-size: 4rem; position: relative; overflow: hidden;
 }
+.product-card .card-img img {
+  width: 100%; height: 100%; object-fit: contain;
+  padding: 12px; transition: transform 0.4s ease;
+}
+.product-card:hover .card-img img { transform: scale(1.05); }
 .product-card .card-body { padding: 16px; }
 .product-card .card-body h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 4px; }
 .product-card .card-body .brand { color: var(--text-light); font-size: 0.85rem; margin-bottom: 8px; }

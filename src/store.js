@@ -4,41 +4,203 @@ const STORAGE_KEY = 'chapidu_data';
 const ADMIN_CODE = 'FIDAC';
 const ADMIN_SESSION_KEY = 'chapidu_admin';
 
-// Default products
+// Default products — productos reales Chapidu
+// Nota: priceBag = pricePerKg × bagWeight (precio bolsa completa referencial)
+// emoji: se usa en el dropdown del formulario y en el mensaje de WhatsApp
 const DEFAULT_PRODUCTS = [
-  { id: 1, name: 'Royal Canin Medium Adult', brand: 'Royal Canin', category: 'perros', pricePerKg: 165, priceBag: 1650, bagWeight: 10, stock: 25, unit: 'kg', emoji: '🐕', description: 'Alimento seco para perros adultos de razas medianas' },
-  { id: 2, name: 'Pedigree Adulto Res', brand: 'Pedigree', category: 'perros', pricePerKg: 85, priceBag: 1700, bagWeight: 20, stock: 40, unit: 'kg', emoji: '🦮', description: 'Croquetas para perros adultos sabor res' },
-  { id: 3, name: 'Dog Chow Cachorro', brand: 'Dog Chow', category: 'perros', pricePerKg: 95, priceBag: 1900, bagWeight: 20, stock: 30, unit: 'kg', emoji: '🐶', description: 'Alimento para cachorros todas las razas' },
-  { id: 4, name: 'Ganador Premium Adulto', brand: 'Ganador', category: 'perros', pricePerKg: 55, priceBag: 1100, bagWeight: 20, stock: 50, unit: 'kg', emoji: '🐕‍🦺', description: 'Croquetas premium para perros adultos' },
-  { id: 5, name: 'Proplan Optistart Cachorro', brand: 'ProPlan', category: 'perros', pricePerKg: 195, priceBag: 2925, bagWeight: 15, stock: 15, unit: 'kg', emoji: '🐩', description: 'Alimento premium para cachorros' },
-  { id: 6, name: 'Nupec Adulto', brand: 'Nupec', category: 'perros', pricePerKg: 120, priceBag: 1800, bagWeight: 15, stock: 20, unit: 'kg', emoji: '🐕', description: 'Croquetas super premium para perros adultos' },
-  { id: 7, name: 'Whiskas Adulto Atún', brand: 'Whiskas', category: 'gatos', pricePerKg: 110, priceBag: 1100, bagWeight: 10, stock: 35, unit: 'kg', emoji: '🐱', description: 'Alimento para gatos adultos sabor atún' },
-  { id: 8, name: 'Felix Gatitos', brand: 'Felix', category: 'gatos', pricePerKg: 130, priceBag: 1300, bagWeight: 10, stock: 20, unit: 'kg', emoji: '🐈', description: 'Alimento para gatitos en crecimiento' },
-  { id: 9, name: 'Royal Canin Kitten', brand: 'Royal Canin', category: 'gatos', pricePerKg: 220, priceBag: 2200, bagWeight: 10, stock: 18, unit: 'kg', emoji: '😺', description: 'Alimento premium para gatitos' },
-  { id: 10, name: 'Cat Chow Adulto Pescado', brand: 'Cat Chow', category: 'gatos', pricePerKg: 100, priceBag: 1500, bagWeight: 15, stock: 22, unit: 'kg', emoji: '🐈‍⬛', description: 'Croquetas para gatos adultos sabor pescado' },
-  { id: 11, name: 'Proplan Gato Indoor', brand: 'ProPlan', category: 'gatos', pricePerKg: 210, priceBag: 3150, bagWeight: 15, stock: 12, unit: 'kg', emoji: '🐱', description: 'Alimento para gatos de interior' },
-  { id: 12, name: 'Nupec Gato Adulto', brand: 'Nupec', category: 'gatos', pricePerKg: 155, priceBag: 1550, bagWeight: 10, stock: 16, unit: 'kg', emoji: '😸', description: 'Croquetas super premium para gatos' },
-  { id: 13, name: 'Cunipic Premium Conejo', brand: 'Cunipic', category: 'conejos', pricePerKg: 130, priceBag: 1300, bagWeight: 10, stock: 15, unit: 'kg', emoji: '🐇', description: 'Alimento premium para conejos adultos' },
-  { id: 14, name: 'Versele-Laga Cuni Nature', brand: 'Versele-Laga', category: 'conejos', pricePerKg: 150, priceBag: 1500, bagWeight: 10, stock: 10, unit: 'kg', emoji: '🐰', description: 'Pellets naturales para conejos enanos y adultos' },
+  // ── PERROS (8) ──────────────────────────────────────────────────────────────
+  {
+    id: 1,
+    name: 'Ganador Premium Adulto Razas Pequeñas',
+    brand: 'Ganador',
+    category: 'perros',
+    emoji: '🐕',
+    pricePerKg: 68,
+    bagWeight: 10,
+    priceBag: 680,
+    stock: 30,
+    unit: 'kg',
+    image: '/products/dog/ganadorPrem-rp.png',
+    description: 'Croquetas premium para perros adultos de razas pequeñas',
+  },
+  {
+    id: 2,
+    name: 'Ganador Premium Adulto Razas Grandes',
+    brand: 'Ganador',
+    category: 'perros',
+    emoji: '🐕',
+    pricePerKg: 68,
+    bagWeight: 20,
+    priceBag: 1360,
+    stock: 30,
+    unit: 'kg',
+    image: '/products/dog/ganaorPrem-rg.png',
+    description: 'Croquetas premium para perros adultos de razas grandes',
+  },
+  {
+    id: 3,
+    name: 'Poder Canino',
+    brand: 'Poder Canino',
+    category: 'perros',
+    emoji: '🦮',
+    pricePerKg: 30,
+    bagWeight: 25,
+    priceBag: 750,
+    stock: 50,
+    unit: 'kg',
+    image: '/products/dog/poder.canino.png',
+    description: 'Alimento económico para perros adultos',
+  },
+  {
+    id: 4,
+    name: 'Dog Chow Adulto Razas Medianas/Grandes',
+    brand: 'Dog Chow',
+    category: 'perros',
+    emoji: '🐶',
+    pricePerKg: 58,
+    bagWeight: 18,
+    priceBag: 1044,
+    stock: 35,
+    unit: 'kg',
+    image: '/products/dog/dogchow-adult-rmg.png',
+    description: 'Croquetas Dog Chow para perros adultos de razas medianas y grandes',
+  },
+  {
+    id: 5,
+    name: 'Dog Chow Adulto Razas Pequeñas',
+    brand: 'Dog Chow',
+    category: 'perros',
+    emoji: '🐶',
+    pricePerKg: 58,
+    bagWeight: 8,
+    priceBag: 464,
+    stock: 35,
+    unit: 'kg',
+    image: '/products/dog/dogchow-adult-rp.png',
+    description: 'Croquetas Dog Chow para perros adultos de razas pequeñas',
+  },
+  {
+    id: 6,
+    name: 'Ganador Original Cachorro Razas Pequeñas',
+    brand: 'Ganador',
+    category: 'perros',
+    emoji: '🐩',
+    pricePerKg: 62,
+    bagWeight: 10,
+    priceBag: 620,
+    stock: 25,
+    unit: 'kg',
+    image: '/products/dog/ganadorOg-cachorro-rp.png',
+    description: 'Alimento para cachorros de razas pequeñas',
+  },
+  {
+    id: 7,
+    name: 'Ganador Original Cachorro Razas Grandes',
+    brand: 'Ganador',
+    category: 'perros',
+    emoji: '🐩',
+    pricePerKg: 62,
+    bagWeight: 20,
+    priceBag: 1240,
+    stock: 25,
+    unit: 'kg',
+    image: '/products/dog/ganadorOg-cachorro.png',
+    description: 'Alimento para cachorros de razas grandes',
+  },
+  {
+    id: 8,
+    name: 'Choice Nutrition Adulto',
+    brand: 'Choice Nutrition',
+    category: 'perros',
+    emoji: '🐕‍🦺',
+    pricePerKg: 70,
+    bagWeight: 20,
+    priceBag: 1400,
+    stock: 20,
+    unit: 'kg',
+    image: '/products/dog/c-nutri-adult.png',
+    description: 'Alimento super premium para perros adultos',
+  },
+  // ── GATOS (2) ───────────────────────────────────────────────────────────────
+  {
+    id: 9,
+    name: 'Minino Plus',
+    brand: 'Minino',
+    category: 'gatos',
+    emoji: '🐱',
+    pricePerKg: 70,
+    bagWeight: 10,
+    priceBag: 700,
+    stock: 30,
+    unit: 'kg',
+    image: '/products/cat/minino.png',
+    description: 'Alimento completo para gatos adultos',
+  },
+  {
+    id: 10,
+    name: 'Whiskas Adulto',
+    brand: 'Whiskas',
+    category: 'gatos',
+    emoji: '🐈',
+    pricePerKg: 58,
+    bagWeight: 9,
+    priceBag: 522,
+    stock: 30,
+    unit: 'kg',
+    image: '/products/cat/whiskas.png',
+    description: 'Croquetas Whiskas para gatos adultos',
+  },
+  // ── CONEJOS (1) ─────────────────────────────────────────────────────────────
+  {
+    id: 11,
+    name: 'Conejina',
+    brand: 'Conejina',
+    category: 'conejos',
+    emoji: '🐰',
+    pricePerKg: 20,
+    bagWeight: 5,
+    priceBag: 100,
+    stock: 20,
+    unit: 'kg',
+    image: '/products/rabbit/conejina.png',
+    description: 'Alimento para conejos enanos y adultos',
+  },
 ];
 
 function getStore() {
   const raw = localStorage.getItem(STORAGE_KEY);
   if (!raw) {
-    const initial = { products: DEFAULT_PRODUCTS, sales: [], nextId: 15 };
+    const initial = { products: DEFAULT_PRODUCTS, sales: [], nextId: 12 };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(initial));
     return initial;
   }
   const data = JSON.parse(raw);
-  // Migration: add any DEFAULT_PRODUCTS that don't exist in stored data
+  // Migration: sync DEFAULT_PRODUCTS — agrega nuevos y parchea campos faltantes (ej. image)
   let changed = false;
   DEFAULT_PRODUCTS.forEach(def => {
-    if (!data.products.find(p => p.id === def.id)) {
+    const existing = data.products.find(p => p.id === def.id);
+    if (!existing) {
       data.products.push(def);
       if (def.id >= data.nextId) data.nextId = def.id + 1;
       changed = true;
+    } else {
+      // Parcha TODOS los campos canónicos desde DEFAULT_PRODUCTS
+      // Incluye name, brand y category para corregir datos viejos (ej. "Proplan gato indoor" → "Conejina")
+      ['name', 'brand', 'category', 'image', 'pricePerKg', 'priceBag', 'bagWeight', 'description'].forEach(field => {
+        if (def[field] !== undefined && existing[field] !== def[field]) {
+          existing[field] = def[field];
+          changed = true;
+        }
+      });
+      // Parcha también el emoji (ahora es un campo intencional, no se elimina)
+      if (def.emoji !== undefined && existing.emoji !== def.emoji) { existing.emoji = def.emoji; changed = true; }
     }
   });
+  // Limpia productos que ya no están en DEFAULT y tampoco tienen id > 11 (eran demos)
+  const defaultIds = new Set(DEFAULT_PRODUCTS.map(p => p.id));
+  const before = data.products.length;
+  data.products = data.products.filter(p => defaultIds.has(p.id) || p.id >= 12);
+  if (data.products.length !== before) changed = true;
   if (changed) localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   return data;
 }
