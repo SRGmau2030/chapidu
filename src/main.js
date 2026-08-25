@@ -43,6 +43,7 @@ document.querySelector('#app').innerHTML = `
         <p>Tu tienda de confianza para croquetas premium para perros y gatos.</p>
         <p style="margin-top:12px;">📍 Mérida, Yucatán</p>
         <p>📧 chapidumid@gmail.com</p>
+        <p style="margin-top:12px;"><a href="https://www.facebook.com/share/1EugNm28v7/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">📘 Facebook</a></p>
       </div>
       <div>
         <h3>Enlaces</h3>
@@ -52,8 +53,7 @@ document.querySelector('#app').innerHTML = `
       </div>
       <div>
         <h3>Horario</h3>
-        <p>Lun - Sáb: 9:00 - 20:00</p>
-        <p>Domingo: 10:00 - 15:00</p>
+        <p>Lun - Dom: 7:00 - 22:00</p>
       </div>
     </div>
     <div class="footer-bottom">

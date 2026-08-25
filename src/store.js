@@ -196,11 +196,13 @@ function getStore() {
       if (def.emoji !== undefined && existing.emoji !== def.emoji) { existing.emoji = def.emoji; changed = true; }
     }
   });
-  // Limpia productos que ya no están en DEFAULT y tampoco tienen id > 11 (eran demos)
+  // Purga productos demo del sistema anterior (IDs conocidos que ya no forman parte del catálogo real)
+  const PURGE_IDS = new Set([13, 14]); // Cunipic Premium Conejo, Versele-Laga Cuni Nature
   const defaultIds = new Set(DEFAULT_PRODUCTS.map(p => p.id));
   const before = data.products.length;
-  data.products = data.products.filter(p => defaultIds.has(p.id) || p.id >= 12);
+  data.products = data.products.filter(p => defaultIds.has(p.id) || (!PURGE_IDS.has(p.id) && p.id >= 12));
   if (data.products.length !== before) changed = true;
+  if (data.nextId < 12) { data.nextId = 12; changed = true; }
   if (changed) localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   return data;
 }

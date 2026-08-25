@@ -14,7 +14,7 @@ export function renderHome(container) {
         <div class="hero-text">
           <span class="badge">🐾 Tienda de Mascotas</span>
           <h1>Las mejores croquetas para tu mascota</h1>
-          <p>Encarga las croquetas favoritas de tu perro o gato. Pide a domicilio.</p>
+          <p>Encarga las croquetas favoritas de tu perro o gato.</p>
           <button class="btn btn-primary" id="hero-cta">Ver Catálogo 🛒</button>
         </div>
         <div class="home/hero-img">
@@ -71,9 +71,9 @@ export function renderHome(container) {
               <span class="stock-badge ${status.class}">${status.label}</span>
               <div class="card-img">
                 ${p.image
-                  ? `<img src="${p.image}" alt="${p.name}" loading="lazy" />`
-                  : (p.emoji || '🐾')
-                }
+        ? `<img src="${p.image}" alt="${p.name}" loading="lazy" />`
+        : (p.emoji || '🐾')
+      }
               </div>
               <div class="card-body">
                 <h3>${p.name}</h3>
